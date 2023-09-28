@@ -1,0 +1,15 @@
+export * from './cityController.service';
+import { CityControllerService } from './cityController.service';
+export * from './classController.service';
+import { ClassControllerService } from './classController.service';
+export * from './majoredController.service';
+import { MajoredControllerService } from './majoredController.service';
+export * from './subjectController.service';
+import { SubjectControllerService } from './subjectController.service';
+export * from './techClassController.service';
+import { TechClassControllerService } from './techClassController.service';
+export * from './timeTeachController.service';
+import { TimeTeachControllerService } from './timeTeachController.service';
+export * from './userController.service';
+import { UserControllerService } from './userController.service';
+export const APIS = [CityControllerService, ClassControllerService, MajoredControllerService, SubjectControllerService, TechClassControllerService, TimeTeachControllerService, UserControllerService];
