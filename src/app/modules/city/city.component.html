@@ -1,0 +1,9 @@
+<label>Thành Phố:</label>
+<input class="form-control" [(ngModel)] = "name">
+<div *ngFor="let input of inputs; let i = index">
+  <label>Quận huyện:</label>
+  <input class="form-control" type="text" [(ngModel)]="input.value">
+  <button (click)="removeInput(i)">Remove</button>
+</div>
+<button (click)="addInput()">Thêm quận huyện</button>
+<button class="alert-primary" (click)="onSubmit()">Lưu</button>
