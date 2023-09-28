@@ -13,6 +13,10 @@ const routes: Routes = [{
     {
       path: 'city',
       loadChildren: () => import('../city/city.module').then(m => m.CityModule)
+    },
+    {
+      path: 'major',
+      loadChildren: () => import('../major/major.module').then(m => m.MajorModule)
     }
   ]
 }

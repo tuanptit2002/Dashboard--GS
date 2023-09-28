@@ -1,0 +1,7 @@
+<div>
+  <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata)">
+    <label for="name">Trình độ:</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+    <button type="submit">Submit</button>
+  </form>
+</div>

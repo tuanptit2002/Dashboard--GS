@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {City, CityControllerService, CityDTO} from "../../swagger";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-city',
@@ -34,6 +35,7 @@ export class CityComponent implements OnInit{
     }
     const  city = new City(this.name, data);
     console.log(city);
-    this.cityControllerService.create6(city).subscribe(resp => console.log(resp));
+    this.cityControllerService.create6(city).subscribe(resp =>  Swal.fire({ title:"success",
+      icon: 'success'}));
   }
 }
