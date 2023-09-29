@@ -13,6 +13,22 @@ const routes: Routes = [{
     {
       path: 'city',
       loadChildren: () => import('../city/city.module').then(m => m.CityModule)
+    },
+    {
+      path: 'major',
+      loadChildren: () => import('../major/major.module').then(m => m.MajorModule)
+    },
+    {
+      path:'techClass',
+      loadChildren: () => import('../tech-class/tech-class.module').then(m => m.TechClassModule)
+    },
+    {
+      path:'subject',
+      loadChildren: () => import('../subject/subject.module').then(m => m.SubjectModule)
+    },
+    {
+      path:'timeTeach',
+      loadChildren: () => import('../time-teach/time-teach.module').then(m => m.TimeTeachModule)
     }
   ]
 }
