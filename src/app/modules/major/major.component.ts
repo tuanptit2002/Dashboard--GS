@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Major, MajoredControllerService} from "../../swagger";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import Swal from 'sweetalert2';

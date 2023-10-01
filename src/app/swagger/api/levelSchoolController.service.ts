@@ -13,20 +13,17 @@
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
-// import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { SubjectDTO } from '../model/subjectDTO';
-import { SuccessDTOString } from '../model/successDTOString';
+import { RespondDTOListLevelSchool } from '../model/respondDTOListLevelSchool';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import {RespondDTOListSubject} from "../model/respondDTOListSubject";
 
 
 @Injectable()
-export class SubjectControllerService {
+export class LevelSchoolControllerService {
 
     protected basePath = 'http://localhost:8089';
     public defaultHeaders = new HttpHeaders();
@@ -60,18 +57,13 @@ export class SubjectControllerService {
     /**
      *
      *
-     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public create3(body: SubjectDTO, observe?: 'body', reportProgress?: boolean): Observable<SuccessDTOString>;
-    public create3(body: SubjectDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SuccessDTOString>>;
-    public create3(body: SubjectDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SuccessDTOString>>;
-    public create3(body: SubjectDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling create3.');
-        }
+    public findAll2(observe?: 'body', reportProgress?: boolean): Observable<RespondDTOListLevelSchool>;
+    public findAll2(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RespondDTOListLevelSchool>>;
+    public findAll2(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RespondDTOListLevelSchool>>;
+    public findAll2(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -86,16 +78,10 @@ export class SubjectControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
 
-        return this.httpClient.request<SuccessDTOString>('post',`${this.basePath}/api/v1/subject/create`,
+        return this.httpClient.request<RespondDTOListLevelSchool>('post',`${this.basePath}/api/v1/level-school/find-all`,
             {
-                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -104,39 +90,4 @@ export class SubjectControllerService {
         );
     }
 
-  /**
-   *
-   *
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public findAll1(observe?: 'body', reportProgress?: boolean): Observable<RespondDTOListSubject>;
-  public findAll1(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RespondDTOListSubject>>;
-  public findAll1(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RespondDTOListSubject>>;
-  public findAll1(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-    let headers = this.defaultHeaders;
-
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = [
-      '*/*'
-    ];
-    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = [
-    ];
-
-    return this.httpClient.request<RespondDTOListSubject>('post',`${this.basePath}/api/v1/subject/find-all`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress
-      }
-    );
-  }
 }

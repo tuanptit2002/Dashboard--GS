@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { SubjectRoutingModule } from './subject-routing.module';
 import {SubjectControllerService} from "../../swagger";
+import {SubjectComponent} from "./subject.component";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SubjectComponent],
   imports: [
     CommonModule,
-    SubjectRoutingModule
+    SubjectRoutingModule,
+    FormsModule
   ],
   providers:[SubjectControllerService]
 })

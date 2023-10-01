@@ -29,6 +29,10 @@ const routes: Routes = [{
     {
       path:'timeTeach',
       loadChildren: () => import('../time-teach/time-teach.module').then(m => m.TimeTeachModule)
+    },
+    {
+      path:'class',
+      loadChildren: () => import('../class/class.module').then(m => m.ClassModule)
     }
   ]
 }

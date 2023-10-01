@@ -13,20 +13,19 @@
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
-// import { CustomHttpUrlEncodingCodec }                        from '../encoder';
+
 
 import { Observable }                                        from 'rxjs';
 
-import { SuccessDTOString } from '../model/successDTOString';
-import { TeachClassDTO } from '../model/teachClassDTO';
+import { RespondDTOListDistrict } from '../model/respondDTOListDistrict';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import {RespondDTOListTeachClass} from "../model/respondDTOListTeachClass";
+import {CustomHttpUrlEncodingCodec} from "../encoder";
 
 
 @Injectable()
-export class TechClassControllerService {
+export class DistrictControllerService {
 
     protected basePath = 'http://localhost:8089';
     public defaultHeaders = new HttpHeaders();
@@ -60,18 +59,13 @@ export class TechClassControllerService {
     /**
      *
      *
-     * @param body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public create2(body: TeachClassDTO, observe?: 'body', reportProgress?: boolean): Observable<SuccessDTOString>;
-    public create2(body: TeachClassDTO, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SuccessDTOString>>;
-    public create2(body: TeachClassDTO, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SuccessDTOString>>;
-    public create2(body: TeachClassDTO, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling create2.');
-        }
+    public findAll3(observe?: 'body', reportProgress?: boolean): Observable<RespondDTOListDistrict>;
+    public findAll3(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RespondDTOListDistrict>>;
+    public findAll3(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RespondDTOListDistrict>>;
+    public findAll3(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -86,16 +80,10 @@ export class TechClassControllerService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
 
-        return this.httpClient.request<SuccessDTOString>('post',`${this.basePath}/api/v1/teach-class/create`,
+        return this.httpClient.request<RespondDTOListDistrict>('post',`${this.basePath}/api/v1/district/find-all`,
             {
-                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -107,13 +95,23 @@ export class TechClassControllerService {
   /**
    *
    *
+   * @param id
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public findAll(observe?: 'body', reportProgress?: boolean): Observable<RespondDTOListTeachClass>;
-  public findAll(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RespondDTOListTeachClass>>;
-  public findAll(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RespondDTOListTeachClass>>;
-  public findAll(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+  public findDistrictToCity(id: number, observe?: 'body', reportProgress?: boolean): Observable<RespondDTOListDistrict>;
+  public findDistrictToCity(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RespondDTOListDistrict>>;
+  public findDistrictToCity(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RespondDTOListDistrict>>;
+  public findDistrictToCity(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+    if (id === null || id === undefined) {
+      throw new Error('Required parameter id was null or undefined when calling findDistrictToCity.');
+    }
+
+    let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+    if (id !== undefined && id !== null) {
+      queryParameters = queryParameters.set('id', <any>id);
+    }
 
     let headers = this.defaultHeaders;
 
@@ -130,8 +128,9 @@ export class TechClassControllerService {
     const consumes: string[] = [
     ];
 
-    return this.httpClient.request<RespondDTOListTeachClass>('post',`${this.basePath}/api/v1/teach-class/find-all`,
+    return this.httpClient.request<RespondDTOListDistrict>('post',`${this.basePath}/api/v1/district/find-district-to-city`,
       {
+        params: queryParameters,
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,

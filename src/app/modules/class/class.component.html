@@ -1,0 +1,54 @@
+<div>
+  <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata)">
+    <label style="color: red;">Hình thức:</label>
+    <input class="form-control" formControlName="describes">
+    <label style="color: red;">Địa chỉ:</label>
+    <input class="form-control" formControlName="districts">
+    <label style="color: red;">Giá:</label>
+    <input class="form-control" formControlName="price">
+    <label style="color: red;">Yêu cầu:</label>
+    <input class="form-control" formControlName="request">
+    <label style="color: red;">Thông tin:</label>
+    <input class="form-control" formControlName="information">
+    <label style="color: red;">Số buổi dạy trên tuần:</label>
+    <input class="form-control" formControlName="number_sessions">
+    <label style="color: red;">Thời gian rảnh:</label>
+    <input class="form-control" formControlName="time_teach">
+    <label style="color: red;">Môn học:</label>
+    <ng-multiselect-dropdown
+
+      [placeholder]="'custom Subject'"
+      [settings]="dropdownSettings"
+      [data]="dropdownList"
+      formControlName = "mutil"
+    >
+    </ng-multiselect-dropdown>
+
+    <label style="color: red;">Lớp học:</label>
+    <ng-multiselect-dropdown
+      [placeholder]="'custom class'"
+      [settings]="dropdownSettings"
+      [data]="class"
+      formControlName = "class"
+    >
+    </ng-multiselect-dropdown>
+
+  <label style="color: red;">Thành phố:</label>
+    <select formControlName="city" (ngModelChange)="submit($event)">
+      <option *ngFor="let option of city" [value]="option.id" >{{ option.name }}</option>
+    </select>
+    <label style="color: red;">Quận huyện:</label>
+    <select formControlName="district">
+      <option *ngFor="let option of district" [value]="option.id">{{ option.name }}</option>
+    </select>
+    <label style="color: red;">Cấp học:</label>
+    <select formControlName="level">
+      <option *ngFor="let option of level" [value]="option.id">{{ option.name }}</option>
+    </select>
+
+    <button type="submit" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+  </form>
+</div>
+
+
+
