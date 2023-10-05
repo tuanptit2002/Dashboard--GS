@@ -33,6 +33,10 @@ const routes: Routes = [{
     {
       path:'class',
       loadChildren: () => import('../class/class.module').then(m => m.ClassModule)
+    },
+    {
+      path:'list-class',
+      loadChildren: () =>import('../list-class/list-class.module').then(m => m.ListClassModule)
     }
   ]
 }

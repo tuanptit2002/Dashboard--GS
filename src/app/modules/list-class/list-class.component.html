@@ -1,0 +1,40 @@
+<div class="search-class">
+  <form>
+    <label>Khu vực</label>
+    <input class="form-control" id="district">
+    <button (click)="searchListClass()">Search</button>
+  </form>
+</div>
+
+<div class="list-class">
+  <form>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Hình Thức</th>
+        <th>Địa Chỉ</th>
+        <th>Giá</th>
+        <th>Yêu cầu</th>
+        <th>Thông tin</th>
+        <th>Số Buổi</th>
+        <th>Thời Gian Rảnh</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let lClass of data">
+        <th>{{lClass.id}}</th>
+        <th>{{lClass.describes}}</th>
+        <th>{{lClass.districts}}</th>
+        <th>{{lClass.price}}</th>
+        <th>{{lClass.request}}</th>
+        <th>{{lClass.information}}</th>
+        <th>{{lClass.numberSessions}}</th>
+        <th>{{lClass.timeTeach}}</th>
+        <th></th>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
