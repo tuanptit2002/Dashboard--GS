@@ -20,7 +20,7 @@ export interface FilterClassDTO {
     requestLevel?: string;
     requestSex?: string;
     idLevelSchool?: number;
-    subject?: string;
+    subject?: number;
     classRoom?: number;
 }
 export class FilterClass implements FilterClassDTO{
@@ -35,7 +35,7 @@ export class FilterClass implements FilterClassDTO{
   requestLevel?: string;
   requestSex?: string;
   idLevelSchool?: number;
-  subject?: string;
+  subject?: number;
   classRoom?: number;
   constructor(pageNum?: number,
               pageSize?: number,
@@ -45,7 +45,7 @@ export class FilterClass implements FilterClassDTO{
               idDistrict?: number,
               requestLevel?: string,
               idLevelSchool?: number,
-              subject?: string,
+              subject?: number,
               classRoom?: number
   ){
     this.pageNum = pageNum;

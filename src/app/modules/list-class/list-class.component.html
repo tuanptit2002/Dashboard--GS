@@ -1,13 +1,39 @@
 <div class="search-class">
-  <form>
-    <label>Khu vực</label>
-    <input class="form-control" id="district">
-    <button (click)="searchListClass()">Search</button>
+  <form [formGroup]="formdata" (ngSubmit)="submit(formdata)">
+    <label class="label">Id:</label>
+    <select formControlName="id" >
+      <option class="form-control" *ngFor="let option of dataClass" [value]="option.id">{{ option.id}}</option>
+    </select>
+    <label class="label">Hình Thức</label>
+    <input class="form-control" formControlName="describes">
+    <label class="label" style="color: red;" >Thành phố:</label>
+    <select formControlName="city" (ngModelChange)="cityOnchange($event)">
+      <option *ngFor="let option of city" [value]="option.id" >{{ option.name }}</option>
+    </select>
+    <label style="color: red;">Quận huyện:</label>
+    <select formControlName="district">
+      <option *ngFor="let option of district" [value]="option.id">{{ option.name }}</option>
+    </select>
+    <label style="color: red;">Yêu cầu:</label>
+    <input class="form-control" formControlName="request">
+<!--    <label class="label">Yêu cầu trình độ:</label>-->
+<!--    <input class="form-control" formControlNam="requestLevel">-->
+    <label class="label">Yêu cầu giới tính</label>
+    <input class="form-control" formControlName="sex">
+    <label class="label">Cấp học</label>
+    <select formControlName="level">
+      <option *ngFor="let option of levelSchool" [value]="option.id">{{ option.name }}</option>
+    </select>
+    <label class="label">Môn học </label>
+    <input class="form-control" formControlName="subject">
+    <label class="label">Lớp</label>
+    <input class="form-control" formControlName="class">
+    <button type="submit">Search</button>
+
   </form>
 </div>
-
 <div class="list-class">
-  <form>
+
     <table class="table">
       <thead>
       <tr>
@@ -23,7 +49,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let lClass of data">
+      <tr *ngFor="let lClass of dataClass">
+
         <th>{{lClass.id}}</th>
         <th>{{lClass.describes}}</th>
         <th>{{lClass.districts}}</th>
@@ -36,5 +63,5 @@
       </tr>
       </tbody>
     </table>
-  </form>
 </div>
+
